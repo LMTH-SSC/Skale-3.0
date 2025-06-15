@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gala Nite Proposal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle, #fff0f5, #ffe0f0);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }.card {
+  background: #fff;
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #e83e8c;
+  margin-bottom: 2rem;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+button {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.yes-btn {
+  background-color: #ff69b4;
+  color: white;
+}
+
+.no-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+#response {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #e83e8c;
+  min-height: 3rem;
+}
+
+#hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.heart {
+  position: absolute;
+  color: #ff69b4;
+  font-size: 2rem;
+  animation: float 4s linear forwards;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.5);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Will you be my date for Gala Nite?</h1>
+<div class="btn-container">
+  <button class="yes-btn">Yes 💖</button>
+  <button class="no-btn">No 😢</button>
+</div>
+<div id="response"></div>
+</div>
+
+<div id="hearts-container"></div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const yesBtn = document.querySelector(".yes-btn");
+  const noBtn = document.querySelector(".no-btn");
+  const response = document.getElementById("response");
+  const heartContainer = document.getElementById("hearts-container");
+
+  yesBtn.addEventListener("click", () => {
+    response.innerHTML = "THANK YOU HUN 💕💖💘💝💓💞❣️😍🥰😘";
+    triggerHearts();
+    triggerConfetti();
+  });
+
+  noBtn.addEventListener("click", () => {
+    response.innerHTML = "PLEASE CHANGE YOUR MIND 😭😢💔🥺😩😿";
+  });
+
+  function triggerHearts() {
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement("div");
+          heart.className = "heart";
+          heart.textContent = "💖";
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.fontSize = Math.random() * 20 + 10 + "px";
+          heartContainer.appendChild(heart);
+          setTimeout(() => heart.remove(), 4000);
+        }
+      }
+
+      function triggerConfetti() {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+      }
+    });
+  </script>
+</body>
+</html>
